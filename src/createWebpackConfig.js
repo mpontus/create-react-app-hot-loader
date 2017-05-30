@@ -1,24 +1,25 @@
 /**
- * Webpack config generator for dev server with support for react-hot-loade
+ * This script enables seamless hot relaoding by injecting scripts from react-hot-loader into the client bundle and
+ * augmenting babel plugin configuration with react-hot-loader's babel plugin.
+ *
+ * Function being exported expects original config to be conformant with webpack configuration found in react-scripts
+ * repo at the time of writing.
  */
 const webpack = require('webpack');
 const autoprefixer = require('autoprefixer');
 
-// We will be basing our webpack configuration off react-scripts to mirror its experience as closely as possible
+// Load the necessary internal modules to make create-react-app's webpack configuration work.
 const paths = require('react-scripts/config/paths');
 const config = require('react-scripts/config/webpack.config.dev');
 const eslintFormatter = require('react-dev-utils/eslintFormatter');
 
 /**
- * Configure webpack according to command line options
- *
- * @param {object} options Command line options
- * @returns {object} Webpack configuration object
+ * Create webpack config based on react-scripts
  */
 module.exports = function createWebpackConfig(options) {
     let devClient = [];
 
-    // Inject devServer client modules in the bundle
+    // Configure dev server client to be included into the bundle
     if (options.client === 'webpack' || options.hotOnly) {
         devClient.push(`${require.resolve('webpack-dev-server/client')}?/`);
         if (options.hotOnly) {
@@ -30,7 +31,7 @@ module.exports = function createWebpackConfig(options) {
         devClient.push(require.resolve('react-dev-utils/webpackHotDevClient'));
     }
 
-    // Collect all bundle entries
+    // Pass dev server client and application files to webpack entry configuration
     const entry = [require.resolve('react-hot-loader/patch')]
         .concat(devClient)
         .concat([
@@ -39,11 +40,8 @@ module.exports = function createWebpackConfig(options) {
             paths.appIndexJs,
         ]);
 
-    console.log(entry);
-
-    // Enhance module defintions by adding react-hot-loader plugin to babel loader.
-    // This is copy paste from react-scripts present configuration. Not interested in supporting nesting shortcuts that
-    // react-scripts may be taking advantage of in the future.
+    // Just copy-pasting module configuration from react-scripts. At the end it is probably the safer option to
+    // replicate the whole thing rather than trying to target individual places in an independently evolving file.
     const module = Object.assign({}, config.module, {
         rules: [
             {
@@ -139,6 +137,6 @@ module.exports = function createWebpackConfig(options) {
         plugins.push(new webpack.NamedModulesPlugin());
     }
 
-    // Base the resulting configuration off react-scripts config, simply override the parts we're interested in
+    // Apply the config modifications on top of react-scripts webpack configuration
     return Object.assign({}, config, { entry, module, plugins });
 };
