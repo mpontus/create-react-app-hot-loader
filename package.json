@@ -1,0 +1,11 @@
+{
+  "name": "react-scripts-hot",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Michael Pontus <m.pontus@gmail.com>",
+  "license": "MIT",
+  "peerDependencies": {
+    "react-dev-utils": "^3.0.0",
+    "react-scripts": "^1.0.7"
+  }
+}
