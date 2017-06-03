@@ -8,9 +8,6 @@ This code is a copy of react-script's start script with minimal modifications.
 Exported function allows us to create webpack compiler using customized configuration.
 */
 
-process.env.BABEL_ENV = 'development';
-process.env.NODE_ENV = 'development';
-
 process.on('unhandledRejection', err => {
     throw err;
 });

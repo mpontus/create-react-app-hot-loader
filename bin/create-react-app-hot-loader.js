@@ -1,4 +1,9 @@
 #!/usr/bin/env node
+
+/* react-scripts needs these variables to be set */
+process.env.BABEL_ENV = 'development';
+process.env.NODE_ENV = 'development';
+
 const minimist = require('minimist');
 const createWebpackConfig = require('../src/createWebpackConfig');
 const startDevServer = require('../src/startDevServer');

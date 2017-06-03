@@ -1,17 +1,11 @@
-# React Hot Loader Dev Server
+# Create React App Hot Loader
 
-This package provides an alternative dev server for create-react-app projects, allowing you to enable react-hot-loader without ejecting.
+Webpack dev server for create-react-app projects. It comes preconfigured for real hot reloading.
 
-## Usage
+## Introduction
 
-In your package.json replace the start script with following command: `react-hot-loader-dev-server`.
+Introducing react-hot-loader into create-react-app project usually involves ejecting. This package makes ejecting optional.
 
-## Debugging
+Simply install this package into your project and change the start script to run `create-react-app-hot-loader` start using new dev server.
 
-Firstly, make sure that you follow the latest instructions found in react-hot-loader's documentation:
-
-https://github.com/gaearon/react-hot-loader/tree/master/docs
-
-Command argument `--hot-only` can be used to disable webpack's fallback mechanism, which hides update errors behind full page refresh.
-
-Some errors can be swallowed by webpack client. For better insight use breakpoints to inspect contexts of the clauses linked from the stacktrace.
+When installed globally you can start the server from any directory containing create-react-app project without any external dependencies.

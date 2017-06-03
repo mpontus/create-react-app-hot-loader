@@ -1,11 +1,25 @@
 {
-  "name": "react-scripts-hot",
-  "version": "1.0.0",
-  "main": "index.js",
-  "author": "Michael Pontus <m.pontus@gmail.com>",
+  "name": "create-react-app-hot-loader",
+  "version": "0.1.0",
+  "description": "Webpack dev server for create-react-app projects with real hot reloading",
+  "homepage": "http://github.com/mpontus/create-react-app-hot-loader",
+  "bugs": {
+    "url": "http://github.com/mpontus/create-react-app-hot-loader/issues",
+    "email": "m.pontus@gmail.com"
+  },
   "license": "MIT",
+  "author": "Michael Pontus <m.pontus@gmail.com>",
+  "bin": {
+    "create-react-app-hot-loader": "./bin/create-react-app-hot-loader.js"
+  },
+  "repository": "mpontus/create-react-app-hot-loader",
   "peerDependencies": {
     "react-dev-utils": "^3.0.0",
     "react-scripts": "^1.0.7"
+  },
+  "dependencies": {
+    "autoprefixer": "^7.1.1",
+    "minimist": "^1.2.0",
+    "webpack": "^2.6.1"
   }
 }
