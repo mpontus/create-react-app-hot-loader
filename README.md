@@ -1,28 +1,30 @@
 # Create React App Hot Loader
 
-Webpack dev server for create-react-app projects built for hot reloading.
+Webpack dev-server for [create-react-app](https://github.com/facebookincubator/create-react-app) projects with support for hot reloading.
 
 ## Introduction
 
-Adding react-hot-loader to your application requires some changes to the webpack pipeline. For create-react-app projects webpack configuration files remain hidden until the developer ejects. Unfortunatelly ejecting comes at a price of losing the convent updates to features beyond just dev server.
+Adding react-hot-loader to your application requires changing webpack configuration. Create-react-app hides webpack files from the developer until they eject. By ejecting you lose the convenience of updates to features beyond just dev-server.
 
-The solution is to delegate the responsiblity for running the dev server to another library. This package comes with webpack dev server preconfigured for create-react-app projects and supporting react-hot-loader out of the box.
+The solution is to delegate the responsibility of running the dev-server to another library. This package comes with webpack server configured for create-react-app projects and with support for [react hot loader](https://github.com/gaearon/react-hot-loader).
 
 ## Installation
 
-Both local and global installations are supported by this package. 
+Package supports both local and global installations.
 
-Chose local installation if you want to provide other contributors with the convenience of real hot reloading. Go for global installation if you have several create-react-app projects which you don't want to pollute with external dependencies.
+Add this package to your project if you want to share the experience of real hot reloading with other developers.
+
+Install the server globally if you want to avoid bringing in extra dependencies.
 
 ### Locally
 
-Run following command to install custom dev server on a per-project basis:
+Run following command to add this package to your project:
 
 ```bash
 $ npm install --dev create-react-app-hot-loader
 ```
 
-Open package.json and change `start` entry inside `scripts` section to execute new dev server:
+Open package.json and change `start` script to run different server:
 
 ```diff
   "scripts": {
@@ -34,17 +36,17 @@ Open package.json and change `start` entry inside `scripts` section to execute n
   }
 ```
 
-You now ready to test your new setup by running `npm start`.
+Test your new setup by running `npm start`.
 
 ### Globally
 
-You can make this server available in any directory on your local machine by installing it as follows:
+To be able to start the server for any project on your local machine, install it as follows:
 
 ```bash
 $ npm install -g create-react-app-hot-loader
 ```
 
-Now you can start the server from the root directory of any create-react-app project using following command:
+Now you can start the server from anywhere with the following command:
 
 ```bash
 $ create-react-app-hot-loader
@@ -59,6 +61,6 @@ Start the server with `--hot-only` flag to disable this fallback mechanism.
 
 ## Plans
 
-At the moment server heavily relies on react-scripts internals.
+At the moment the server heavily relies on react-scripts internals.
 
-I plan to get rid of those dependencies at the cost of sacrificing some of its useful features.
+I plan to get rid of those dependencies at the cost of losing some of their useful features.
