@@ -1,6 +1,6 @@
 {
   "name": "create-react-app-hot-loader",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Webpack dev server for create-react-app projects with real hot reloading",
   "homepage": "http://github.com/mpontus/create-react-app-hot-loader",
   "bugs": {
@@ -19,6 +19,7 @@
     "minimist": "^1.2.0",
     "postcss-flexbugs-fixes": "^3.0.0",
     "react-dev-utils": "^3.0.0",
+    "react-hot-loader": "^1.3.1",
     "react-scripts": "^1.0.7",
     "webpack": "^2.6.1",
     "webpack-dev-server": "^2.4.5"
