@@ -1,5 +1,7 @@
+// This config mirrors the config file used by create-react-app.
+// Refer to the original source for reasnoning behind plugins used here:
+// https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/config/webpack.config.dev.js
 const path = require('path');
-const map = require('ramda/lib/map');
 const autoprefixer = require('autoprefixer');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -9,14 +11,19 @@ const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeM
 const eslintFormatter = require('react-dev-utils/eslintFormatter');
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const paths = require('./paths');
-
-// This config mirrors the config established by react-scripts. Please refer to the orginals for details:
-// @see https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/config/webpack.config.dev.js
+const map = require('../utils/mapObject');
 
 const publicUrl = '/';
 
 // Stringify environment variables
-const envStringified = map(value => JSON.stringify(value), process.env);
+
+// TODO: test it working
+const envStringified = ((env) =>
+  Object.keys(env).reduce(
+      (acc, key) => Object.assign(acc, { [key]: env[key] }),
+      {}
+  )
+)(process.env)
 
 module.exports = {
     devtool: 'cheap-module-source-map',
@@ -38,7 +45,7 @@ module.exports = {
     },
     resolve: {
         modules: ['node_modules', paths.appNodeModules].concat(
-            process.env.NODE_PATH.split(path.delimiter).filter(Boolean)
+            (process.env.NODE_PATH || '').split(path.delimiter).filter(Boolean)
         ),
         extensions: ['.js', '.json', '.jsx'],
         alias: {

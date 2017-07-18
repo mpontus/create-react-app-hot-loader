@@ -1,23 +1,23 @@
 #!/usr/bin/env node
 
-/* react-scripts needs these variables to be set */
-process.env.BABEL_ENV = 'development';
-process.env.NODE_ENV = 'development';
+// babel-preset-react-app requires these variables to be set
+process.env.NODE_ENV = 'development'
+process.env.BABEL_ENV = 'development'
 
-const minimist = require('minimist');
-const createWebpackConfig = require('../src/createWebpackConfig');
-const startDevServer = require('../src/startDevServer');
+const webpack = require('webpack');
+const Server = require('webpack-dev-server');
+const compilerConfig = require('../src/config/webpack.config');
+const serverConfig = require('../src/config/devServer.config');
+const compiler = webpack(compilerConfig);
+const server = new Server(compiler, serverConfig);
+const port = parseInt(process.env.PORT, 10) || 3000;
+const { host, https } = serverConfig;
 
-const cliArgs = minimist(process.argv.slice(2), {
-    string: ['client'],
-    boolean: ['hot-only'],
-    alias: { 'hot-only': 'hotOnly' },
+server.listen(port, host, (err) => {
+  if (err) throw err;
+
+  const protocol = https ? 'https' : 'http';
+  const url = `${protocol}://${host}:${port}/`
+
+  console.log(`Project is running on ${url}`);
 });
-
-const options = {
-    hotOnly: cliArgs.hotOnly || process.env.HOT_ONLY,
-    client: cliArgs.client,
-};
-
-const webpackConfig = createWebpackConfig(options);
-startDevServer(webpackConfig);
