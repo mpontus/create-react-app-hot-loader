@@ -2,6 +2,10 @@
 
 Webpack dev-server for [create-react-app](https://github.com/facebookincubator/create-react-app) projects with support for hot reloading.
 
+> # Defunct
+>
+> This module is no longer compatible with create-react-app. Complete rewrite is in the plans.
+
 ## Introduction
 
 Adding react-hot-loader to your application requires changing webpack configuration. Create-react-app hides webpack files from the developer until they eject. By ejecting you lose the convenience of updates to features beyond just dev-server.
@@ -52,15 +56,8 @@ Now you can start the server from anywhere with the following command:
 $ create-react-app-hot-loader
 ```
 
-
 ## Debugging
 
 By default update errors cause full page refresh. Not very useful for debugging.
 
 Start the server with `--hot-only` flag to disable this fallback mechanism.
-
-## Plans
-
-At the moment the server heavily relies on react-scripts internals.
-
-I plan to get rid of those dependencies at the cost of losing some of their useful features.
